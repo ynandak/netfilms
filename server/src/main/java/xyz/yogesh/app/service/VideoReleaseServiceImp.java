@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import xyz.yogesh.app.entity.RawVideoRelease;
 import xyz.yogesh.app.entity.VideoRelease;
 import xyz.yogesh.app.exception.EntityAlreadyExistException;
 import xyz.yogesh.app.exception.EntityNotFoundException;
@@ -33,24 +34,23 @@ public class VideoReleaseServiceImp implements VideoReleaseService {
 
 	@Transactional
 	@Override
-	public VideoRelease create(VideoRelease vid) {
-		VideoRelease existing = repository.findByImdbID(vid.getImdbID());
+	public VideoRelease create(RawVideoRelease rawVid) {
+		VideoRelease existing = repository.findByImdbID(rawVid.getImdbID());
 		if (existing != null) {
 			throw new EntityAlreadyExistException("Video Release already exists with this IMDB ID");
 		}
-		return repository.create(vid);
+		return repository.create(rawVid.flatten());
 	}
 
 	@Transactional
 	@Override
-	public VideoRelease update(String vidId, VideoRelease vid) {
+	public VideoRelease update(String vidId, RawVideoRelease rawVid) {
 		VideoRelease existing = repository.findOne(vidId);
 		if (existing == null) {
 			throw new EntityNotFoundException("Video Release not found");
 		}
-		vid.setID(vidId);
-		System.err.println(vid.toString());
-		return repository.update(vid);
+		rawVid.setID(vidId);
+		return repository.update(rawVid.flatten());
 	}
 
 	@Transactional

@@ -1,8 +1,8 @@
 package xyz.yogesh.app.entity;
 
-import java.util.UUID;
-
+import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
@@ -20,49 +20,36 @@ public class VideoRelease {
 	@Id
 	private String id;
 
-	public String title;
-	public Integer year;
-	public String rated;
-	public String released;
-	public String runtime;
-	public String genre;
-	public String director;
-	public String writer;
-	public String actors;
-	public String plot;
-	public String language;
-	public String country;
-	public String awards;
-	public String poster;
-	public Integer metascore;
-	public Double imdbRating;
-	public Integer imdbVotes;
+	private String title;
+	private Integer year;
+	private String rated;
+	private String released;
+	private String runtime;
+	
+	@ElementCollection
+	private List<String> genre;
+	
+	private String director;
+	private String writer;
+	private String actors;
+	private String plot;
+	private String language;
+	private String country;
+	private String awards;
+	private String poster;
+	private Integer metascore;
+	private Double imdbRating;
+	private Integer imdbVotes;
 	
 	@Column(unique=true)
-	public String imdbID;
+	private String imdbID;
 	
-	public String type;
+	private String type;
 
 	public VideoRelease() {
-		id = UUID.randomUUID().toString();
+		//id = UUID.randomUUID().toString();
 	}
 	
-	public String getImdbID() {
-		return imdbID;
-	}
-
-	public void setImdbID(String imdbID) {
-		this.imdbID = imdbID;
-	}
-	
-	public String getID() {
-		return id;
-	}
-
-	public void setID(String imdbID) {
-		this.id = imdbID;
-	}
-
 	@Override
 	public String toString() {
 		return "VideoRelease [id=" + id + ", title=" + title + ", year=" + year + ", rated=" + rated + ", released="
@@ -71,5 +58,164 @@ public class VideoRelease {
 				+ ", awards=" + awards + ", poster=" + poster + ", metascore=" + metascore + ", imdbRating="
 				+ imdbRating + ", imdbVotes=" + imdbVotes + ", imdbID=" + imdbID + ", type=" + type + "]";
 	}
-	
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public String getRated() {
+		return rated;
+	}
+
+	public void setRated(String rated) {
+		this.rated = rated;
+	}
+
+	public String getReleased() {
+		return released;
+	}
+
+	public void setReleased(String released) {
+		this.released = released;
+	}
+
+	public String getRuntime() {
+		return runtime;
+	}
+
+	public void setRuntime(String runtime) {
+		this.runtime = runtime;
+	}
+
+	public List<String> getGenre() {
+		return genre;
+	}
+
+	public void setGenre(List<String> genre) {
+		this.genre = genre;
+	}
+
+	public String getDirector() {
+		return director;
+	}
+
+	public void setDirector(String director) {
+		this.director = director;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
+	public String getActors() {
+		return actors;
+	}
+
+	public void setActors(String actors) {
+		this.actors = actors;
+	}
+
+	public String getPlot() {
+		return plot;
+	}
+
+	public void setPlot(String plot) {
+		this.plot = plot;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getAwards() {
+		return awards;
+	}
+
+	public void setAwards(String awards) {
+		this.awards = awards;
+	}
+
+	public String getPoster() {
+		return poster;
+	}
+
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
+
+	public Integer getMetascore() {
+		return metascore;
+	}
+
+	public void setMetascore(Integer metascore) {
+		this.metascore = metascore;
+	}
+
+	public Double getImdbRating() {
+		return imdbRating;
+	}
+
+	public void setImdbRating(Double imdbRating) {
+		this.imdbRating = imdbRating;
+	}
+
+	public Integer getImdbVotes() {
+		return imdbVotes;
+	}
+
+	public void setImdbVotes(Integer imdbVotes) {
+		this.imdbVotes = imdbVotes;
+	}
+
+	public String getImdbID() {
+		return imdbID;
+	}
+
+	public void setImdbID(String imdbID) {
+		this.imdbID = imdbID;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 }
