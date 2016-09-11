@@ -1,5 +1,6 @@
 package xyz.yogesh.app.entity;
 
+import java.sql.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -23,7 +24,7 @@ public class VideoRelease {
 	private String title;
 	private Integer year;
 	private String rated;
-	private String released;
+	private Date released;
 	private String runtime;
 	
 	@ElementCollection
@@ -45,9 +46,12 @@ public class VideoRelease {
 	private String imdbID;
 	
 	private String type;
+	private String userAvgRating;
+	private Integer numVotes;
 
 	public VideoRelease() {
 		//id = UUID.randomUUID().toString();
+		numVotes = 0;
 	}
 	
 	@Override
@@ -91,11 +95,11 @@ public class VideoRelease {
 		this.rated = rated;
 	}
 
-	public String getReleased() {
+	public Date getReleased() {
 		return released;
 	}
 
-	public void setReleased(String released) {
+	public void setReleased(Date released) {
 		this.released = released;
 	}
 
@@ -217,5 +221,21 @@ public class VideoRelease {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getUserAvgRating() {
+		return userAvgRating;
+	}
+
+	public void setUserAvgRating(String userAvgRating) {
+		this.userAvgRating = userAvgRating;
+	}
+
+	public Integer getNumVotes() {
+		return numVotes;
+	}
+
+	public void setNumVotes(Integer numVotes) {
+		this.numVotes = numVotes;
 	}
 }

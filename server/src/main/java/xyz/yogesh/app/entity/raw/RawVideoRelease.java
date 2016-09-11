@@ -1,5 +1,6 @@
 package xyz.yogesh.app.entity.raw;
 
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -63,7 +64,7 @@ public class RawVideoRelease {
 		vid.setTitle(title);
 		vid.setYear(year);
 		vid.setRated(rated);
-		vid.setReleased(released);
+		vid.setReleased(Date.valueOf(released));
 		vid.setRuntime(runtime);
 		vid.setDirector(director);
 		vid.setWriter(writer);
