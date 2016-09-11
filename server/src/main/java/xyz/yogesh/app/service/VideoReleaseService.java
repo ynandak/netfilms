@@ -2,8 +2,8 @@ package xyz.yogesh.app.service;
 
 import java.util.List;
 
-import xyz.yogesh.app.entity.RawVideoRelease;
 import xyz.yogesh.app.entity.VideoRelease;
+import xyz.yogesh.app.entity.raw.RawVideoRelease;
 
 public interface VideoReleaseService {
 

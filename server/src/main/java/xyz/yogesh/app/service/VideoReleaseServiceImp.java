@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import xyz.yogesh.app.entity.RawVideoRelease;
 import xyz.yogesh.app.entity.VideoRelease;
+import xyz.yogesh.app.entity.raw.RawVideoRelease;
 import xyz.yogesh.app.exception.EntityAlreadyExistException;
 import xyz.yogesh.app.exception.EntityNotFoundException;
 import xyz.yogesh.app.repository.VideoReleaseRepository;

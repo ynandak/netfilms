@@ -1,7 +1,9 @@
-package xyz.yogesh.app.entity;
+package xyz.yogesh.app.entity.raw;
 
 import java.util.Arrays;
 import java.util.UUID;
+
+import xyz.yogesh.app.entity.VideoRelease;
 
 public class RawVideoRelease {
 

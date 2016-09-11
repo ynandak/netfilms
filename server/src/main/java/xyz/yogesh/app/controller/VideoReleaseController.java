@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import xyz.yogesh.app.entity.RawVideoRelease;
 import xyz.yogesh.app.entity.VideoRelease;
+import xyz.yogesh.app.entity.raw.RawVideoRelease;
 import xyz.yogesh.app.service.VideoReleaseService;
 
 @RestController
