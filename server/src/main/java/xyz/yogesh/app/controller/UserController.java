@@ -44,4 +44,10 @@ public class UserController {
 	public void delete(@PathVariable("id") String userId) {
 		service.remove(userId);
 	}
+	
+	//User login
+	@RequestMapping(method = RequestMethod.POST, value = "/login", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public User login(@RequestBody User user) {
+		return service.login(user);
+	}
 }

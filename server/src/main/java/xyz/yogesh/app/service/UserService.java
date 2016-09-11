@@ -15,4 +15,6 @@ public interface UserService {
 	public User update(String vidId, User user);
 
 	public void remove(String userId);
+	
+	public User login(User user);
 }

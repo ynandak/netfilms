@@ -70,4 +70,16 @@ public class UserServiceImp implements UserService {
 		}
 		repository.delete(existing);
 	}
+
+	@Override
+	public User login(User u) {
+		User user = repository.findByEmail(u.getEmail());
+		if (user == null) {
+			throw new EntityNotFoundException("User not found");
+		}
+		else if (!HashService.check(u.getPassword(), user.getPassword())) {
+			return null;
+		}
+		return user;
+	}
 }
