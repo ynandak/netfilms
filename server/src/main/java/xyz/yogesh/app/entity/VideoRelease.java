@@ -33,6 +33,8 @@ public class VideoRelease {
 	private String director;
 	private String writer;
 	private String actors;
+	
+	@Column(length=2000)
 	private String plot;
 	private String language;
 	private String country;

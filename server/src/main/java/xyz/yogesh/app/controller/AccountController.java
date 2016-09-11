@@ -15,7 +15,7 @@ import xyz.yogesh.app.service.UserService;
 
 @RestController
 @RequestMapping(value = "users", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class UserController {
+public class AccountController {
 
 	@Autowired
 	private UserService service;

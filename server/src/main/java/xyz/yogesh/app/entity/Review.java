@@ -2,6 +2,7 @@ package xyz.yogesh.app.entity;
 
 import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
@@ -26,6 +27,8 @@ public class Review {
 	@OneToOne
 	private VideoRelease title;
 	private Integer rating;
+	
+	@Column(length=2000)
 	private String review;
 
 	public Review() {
