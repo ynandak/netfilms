@@ -14,7 +14,9 @@ import javax.persistence.Table;
 @Table
 @NamedQueries({
 		@NamedQuery(name = "Review.findAll", query = "SELECT r from Review r where r.title.id=:pVidID"),
-		@NamedQuery(name = "Review.findByTitleUser", query = "SELECT r from Review r where r.title.id=:pVidID and r.user.id=:pUserID")
+		@NamedQuery(name = "Review.findByTitleUser", query = "SELECT r from Review r where r.title.id=:pVidID and r.user.id=:pUserID"),
+		@NamedQuery(name = "Review.deleteByTitle", query = "delete from Review r where r.title.id=:pVidID"),
+		@NamedQuery(name = "Review.deleteByUser", query = "delete from Review r where r.user.id=:pUserID")
 })
 public class Review {
 

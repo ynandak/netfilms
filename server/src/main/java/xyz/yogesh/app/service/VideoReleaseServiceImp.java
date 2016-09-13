@@ -10,6 +10,7 @@ import xyz.yogesh.app.entity.VideoRelease;
 import xyz.yogesh.app.entity.raw.RawVideoRelease;
 import xyz.yogesh.app.exception.EntityAlreadyExistException;
 import xyz.yogesh.app.exception.EntityNotFoundException;
+import xyz.yogesh.app.repository.ReviewRepository;
 import xyz.yogesh.app.repository.VideoReleaseRepository;
 
 @Service
@@ -17,6 +18,9 @@ public class VideoReleaseServiceImp implements VideoReleaseService {
 
 	@Autowired
 	private VideoReleaseRepository repository;
+	
+	@Autowired
+	private ReviewRepository reviewRepository;
 
 	@Override
 	public List<VideoRelease> findAll() {
@@ -60,6 +64,7 @@ public class VideoReleaseServiceImp implements VideoReleaseService {
 		if (existing == null) {
 			throw new EntityNotFoundException("Video Release not found");
 		}
+		reviewRepository.cascadeOnDeleteVideoRelease(vidId);
 		repository.delete(existing);
 	}
 }

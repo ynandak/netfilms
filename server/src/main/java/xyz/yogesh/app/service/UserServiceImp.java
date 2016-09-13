@@ -10,6 +10,7 @@ import xyz.yogesh.app.entity.User;
 import xyz.yogesh.app.exception.ActionNotAllowedException;
 import xyz.yogesh.app.exception.EntityAlreadyExistException;
 import xyz.yogesh.app.exception.EntityNotFoundException;
+import xyz.yogesh.app.repository.ReviewRepository;
 import xyz.yogesh.app.repository.UserRepository;
 
 @Service
@@ -17,6 +18,9 @@ public class UserServiceImp implements UserService {
 
 	@Autowired
 	private UserRepository repository;
+	
+	@Autowired
+	private ReviewRepository reviewRepository;
 
 	@Override
 	public List<User> findAll() {
@@ -68,6 +72,7 @@ public class UserServiceImp implements UserService {
 		if (existing == null) {
 			throw new EntityNotFoundException("User not found");
 		}
+		reviewRepository.cascadeOnDeleteUser(userId);
 		repository.delete(existing);
 	}
 

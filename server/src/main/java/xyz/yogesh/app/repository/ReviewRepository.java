@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
@@ -34,6 +35,22 @@ public class ReviewRepository{
 		if(query.getResultList().size()==0) {
 			return false;
 		}
+		return true;
+	}
+	
+	//Implementing on delete cascade for User -> Review
+	public boolean cascadeOnDeleteUser(String userID) {
+		Query query = em.createNamedQuery("Review.deleteByUser", Review.class);
+		query.setParameter("pUserID", userID);
+		query.executeUpdate();
+		return true;
+	}
+	
+	//Implementing on delete cascade for VideoRelease -> Review
+	public boolean cascadeOnDeleteVideoRelease(String vidID) {
+		Query query = em.createNamedQuery("Review.deleteByTitle", Review.class);
+		query.setParameter("pVidID", vidID);
+		query.executeUpdate();
 		return true;
 	}
 }
