@@ -21,6 +21,11 @@ public class VideoReleaseController {
 	@Autowired
 	private VideoReleaseService service;
 
+/*	@RequestMapping(method = RequestMethod.GET)
+	public List<VideoRelease> findAll() {
+		return service.findAll();
+	}*/
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public List<VideoRelease> findAll() {
 		return service.findAll();

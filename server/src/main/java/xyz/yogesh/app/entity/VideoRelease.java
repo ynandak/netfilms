@@ -48,12 +48,22 @@ public class VideoRelease {
 	private String imdbID;
 	
 	private String type;
-	private String userAvgRating;
+	private Double userAvgRating;
 	private Integer numVotes;
 
 	public VideoRelease() {
 		//id = UUID.randomUUID().toString();
 		numVotes = 0;
+	}
+	
+	//Maintaining average rating for titles, assuming that reviews/ratings cannot be removed.
+	public void addReview(Review review) {
+		if(review.getRating() != null) {
+			if(numVotes == 0) {
+				userAvgRating = 0.0;
+			}
+			userAvgRating = ((userAvgRating * numVotes) + review.getRating())/++numVotes;
+		}
 	}
 	
 	@Override
@@ -225,11 +235,11 @@ public class VideoRelease {
 		this.type = type;
 	}
 
-	public String getUserAvgRating() {
+	public Double getUserAvgRating() {
 		return userAvgRating;
 	}
 
-	public void setUserAvgRating(String userAvgRating) {
+	public void setUserAvgRating(Double userAvgRating) {
 		this.userAvgRating = userAvgRating;
 	}
 

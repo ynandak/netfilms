@@ -44,6 +44,7 @@ public class ReviewService {
 		if (reviewRepository.hasTitleUser(vidID, userID)) {
 			throw new EntityAlreadyExistException("Review already exists for user/title combination");
 		}
+		vid.addReview(review);
 		review.setTitle(vid);
 		review.setUser(user);
 		return reviewRepository.create(review);
