@@ -15,6 +15,8 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @Table
@@ -41,6 +43,7 @@ public class User {
 	@NotNull
 	@Pattern(regexp="/^(?:[0-9]+[a-z]|[a-z]+[0-9])[a-z0-9]*$/i")
 	@Size(min=8, max=20)
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
 	
 	@NotNull
