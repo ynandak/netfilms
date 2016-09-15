@@ -4,11 +4,13 @@ import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-
 import org.eclipse.persistence.config.PersistenceUnitProperties;
 import org.eclipse.persistence.logging.SessionLog;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -18,7 +20,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
+@PropertySource("classpath:/resources/netfilms-api.properties")
 public class JPAConfig {
+	
+	@Autowired
+	Environment env;
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -33,10 +39,10 @@ public class JPAConfig {
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource ds = new DriverManagerDataSource();
-		ds.setDriverClassName("com.mysql.jdbc.Driver");
-		ds.setUrl("jdbc:mysql://localhost:3306/netfilms-db?useSSL=false");
-		ds.setUsername("root");
-		ds.setPassword("root");
+		ds.setDriverClassName(env.getProperty("netfilms-api.driver"));
+		ds.setUrl(env.getProperty("netfilms-api.url"));
+		ds.setUsername(env.getProperty("netfilms-api.username"));
+		ds.setPassword(env.getProperty("netfilms-api.password"));
 		return ds;
 	}
 
