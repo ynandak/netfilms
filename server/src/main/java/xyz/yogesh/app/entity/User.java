@@ -4,10 +4,17 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table
@@ -16,19 +23,39 @@ import javax.persistence.Table;
 		@NamedQuery(name = "User.findByEmail", query = "SELECT u from User u where u.email=:pEmail")
 })
 public class User {
+	
+	private enum UserType {
+		ADMIN, USER
+	}
 
 	@Id
 	private String id;
 
+
+	@NotNull
 	@Column(unique=true)
+	@Pattern(regexp="/.+@.+\\..+/i")
 	private String email;
+	
+	//At least 1 alphabet and 1 digit, 8-20 characters
+	@NotNull
+	@Pattern(regexp="/^(?:[0-9]+[a-z]|[a-z]+[0-9])[a-z0-9]*$/i")
+	@Size(min=8, max=20)
 	private String password;
+	
+	@NotNull
+	@Size(min=2, max=30)
 	private String name;
-	private String userType;
+	
+	@NotNull
+	@JsonIgnore
+	@Enumerated(EnumType.STRING)
+	@Column(name = "USERTYPE")
+	private UserType userType;
 
 	public User() {
 		id = UUID.randomUUID().toString();
-		userType = "User";
+		userType = UserType.USER;
 	}
 
 	@Override
@@ -69,11 +96,11 @@ public class User {
 		this.email = email;
 	}
 
-	public String getUserType() {
+	public UserType getUserType() {
 		return userType;
 	}
 
-	public void setUserType(String userType) {
+	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
 }

@@ -27,6 +27,7 @@ public class VideoRelease {
 	private Date released;
 	private String runtime;
 	
+	//Using @ElementCollection since it isn't an entity
 	@ElementCollection
 	private List<String> genre;
 	
@@ -57,6 +58,7 @@ public class VideoRelease {
 	}
 	
 	//Maintaining average rating for titles, assuming that reviews/ratings cannot be removed.
+	//Not setting userAvgRating = 0 in constructor so that movie with no ratings does not have 0 rating
 	public void addReview(Review review) {
 		if(review.getRating() != null) {
 			if(numVotes == 0) {

@@ -51,6 +51,7 @@ public class JPAConfig {
 		props.setProperty(PersistenceUnitProperties.DDL_GENERATION, PersistenceUnitProperties.CREATE_ONLY);
 		props.setProperty(PersistenceUnitProperties.LOGGING_LEVEL, SessionLog.FINE_LABEL);
 		props.setProperty(PersistenceUnitProperties.WEAVING, "false");
+		props.setProperty(PersistenceUnitProperties.VALIDATION_MODE, "AUTO");
 		return props;
 	}
 }

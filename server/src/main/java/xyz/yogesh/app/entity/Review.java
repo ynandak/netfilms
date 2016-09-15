@@ -9,6 +9,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 @Entity
 @Table
@@ -28,6 +30,9 @@ public class Review {
 	
 	@OneToOne
 	private VideoRelease title;
+	
+	@Min(value = 1)
+	@Max(value = 5)
 	private Integer rating;
 	
 	@Column(length=2000)

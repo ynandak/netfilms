@@ -2,6 +2,8 @@ package xyz.yogesh.app.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +33,7 @@ public class AccountController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public User create(@RequestBody User user) {
+	public User create(@Valid @RequestBody User user) {
 		return service.create(user);
 	}
 
