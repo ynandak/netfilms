@@ -1,6 +1,7 @@
 package xyz.yogesh.app.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,8 @@ public class VideoReleaseServiceImp implements VideoReleaseService {
 	private ReviewRepository reviewRepository;
 
 	@Override
-	public List<VideoRelease> findAll() {
-		return repository.findAll();
+	public List<VideoRelease> findAll(Map<String, String> params) {
+		return repository.findAll(params);
 	}
 
 	@Override

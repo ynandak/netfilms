@@ -1,6 +1,7 @@
 package xyz.yogesh.app.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,8 +18,8 @@ public class VideoReleaseRepositoryImp implements VideoReleaseRepository {
 	private EntityManager em;
 
 	@Override
-	public List<VideoRelease> findAll() {
-		TypedQuery<VideoRelease> query = em.createNamedQuery("VideoRelease.findAll", VideoRelease.class);
+	public List<VideoRelease> findAll(Map<String, String> params) {
+		TypedQuery<VideoRelease> query = em.createQuery(VideoRelease.getCustom(params), VideoRelease.class);
 		return query.getResultList();
 	}
 

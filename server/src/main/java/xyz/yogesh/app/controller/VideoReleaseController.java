@@ -1,6 +1,7 @@
 package xyz.yogesh.app.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import xyz.yogesh.app.entity.VideoRelease;
@@ -27,8 +29,8 @@ public class VideoReleaseController {
 	}*/
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public List<VideoRelease> findAll() {
-		return service.findAll();
+	public List<VideoRelease> findAll(@RequestParam Map<String, String> params) {
+		return service.findAll(params);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "{id}")

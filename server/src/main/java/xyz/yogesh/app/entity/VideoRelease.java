@@ -1,7 +1,10 @@
 package xyz.yogesh.app.entity;
 
+import java.lang.reflect.Field;
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
+
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -13,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table
 @NamedQueries({
-		@NamedQuery(name = "VideoRelease.findAll", query = "SELECT v from VideoRelease v ORDER BY v.title"),
+		//@NamedQuery(name = "VideoRelease.findAll", query = "SELECT v from VideoRelease v ORDER BY v.title"),
 		@NamedQuery(name = "VideoRelease.findByImdbID", query = "SELECT v from VideoRelease v where v.imdbID=:pImdbID")
 })
 public class VideoRelease {
@@ -68,6 +71,59 @@ public class VideoRelease {
 		}
 	}
 	
+	public static String getCustom(Map<String, String> params) {
+		Boolean whereFlag = false;
+		
+		//Iterating through parameter list and building query
+		StringBuilder query = new StringBuilder("SELECT v from VideoRelease v");
+		for (Map.Entry<String, String> param : params.entrySet()) {
+			System.err.println("Map value: " + param.getKey() + " = " + param.getValue());	//PRINT STATEMENT
+		    if(fieldExists(param.getKey())) {
+		    	if(whereFlag == false) {
+		    		whereFlag = true;
+		    		query.append(" where");
+		    	}
+		    	else {
+		    		query.append(" and");
+		    	}
+	    		query.append(" v." + param.getKey() + "=\"" + param.getValue() + "\"");
+		    }
+		}
+		
+		//Setting order by statement, default is sort by title
+		StringBuilder sortStatement = new StringBuilder(" order by v.");
+		if(params.containsKey("sort")) {
+			if(!fieldExists(params.get("sort"))) {
+				sortStatement.append("title");
+			}
+			else {
+				if((params.containsKey("sortOrder")) && (params.get("sortOrder").equalsIgnoreCase("DESC"))) {
+					sortStatement.append(params.get("sort") + " DESC");
+				}
+				else {
+					sortStatement.append(params.get("sort"));
+				}
+			}
+		}
+		else {
+			sortStatement.append("title");
+		}	
+		query.append(sortStatement);
+		System.err.println(query.toString());				//PRINT STATEMENT
+		return query.toString();
+	}
+	
+	private static boolean fieldExists(String field) {
+		try {
+		    @SuppressWarnings("unused")
+		    Field f = VideoRelease.class.getDeclaredField(field);
+		    return true;
+		}
+		catch (NoSuchFieldException ex) {
+			return false;
+		}
+	}
+
 	@Override
 	public String toString() {
 		return "VideoRelease [id=" + id + ", title=" + title + ", year=" + year + ", rated=" + rated + ", released="
