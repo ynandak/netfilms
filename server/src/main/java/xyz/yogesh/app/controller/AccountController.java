@@ -38,7 +38,7 @@ public class AccountController {
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public User update(@PathVariable("id") String userId, @RequestBody User user) {
+	public User update(@PathVariable("id") String userId, @Valid @RequestBody User user) {
 		return service.update(userId, user);
 	}
 

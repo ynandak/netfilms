@@ -68,10 +68,10 @@ public class RawVideoRelease {
 		vid.setRuntime(runtime);
 		vid.setDirector(director);
 		vid.setWriter(writer);
-		vid.setActors(actors);
+		vid.setActors(Arrays.asList(this.actors.split("\\s*,\\s*")));
 		vid.setPlot(plot);
-		vid.setLanguage(language);
-		vid.setCountry(country);
+		vid.setLanguage(Arrays.asList(this.language.split("\\s*,\\s*")));
+		vid.setCountry(Arrays.asList(this.country.split("\\s*,\\s*")));
 		vid.setAwards(awards);
 		vid.setPoster(poster);
 		vid.setMetascore(metascore);

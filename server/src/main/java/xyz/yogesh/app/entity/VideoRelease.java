@@ -36,12 +36,18 @@ public class VideoRelease {
 	
 	private String director;
 	private String writer;
-	private String actors;
+	
+	@ElementCollection
+	private List<String> actors;
 	
 	@Column(length=2000)
 	private String plot;
-	private String language;
-	private String country;
+	
+	@ElementCollection
+	private List<String> language;
+	
+	@ElementCollection
+	private List<String> country;
 	private String awards;
 	private String poster;
 	private Integer metascore;
@@ -205,11 +211,11 @@ public class VideoRelease {
 		this.writer = writer;
 	}
 
-	public String getActors() {
+	public List<String> getActors() {
 		return actors;
 	}
 
-	public void setActors(String actors) {
+	public void setActors(List<String> actors) {
 		this.actors = actors;
 	}
 
@@ -221,19 +227,19 @@ public class VideoRelease {
 		this.plot = plot;
 	}
 
-	public String getLanguage() {
+	public List<String> getLanguage() {
 		return language;
 	}
 
-	public void setLanguage(String language) {
+	public void setLanguage(List<String> language) {
 		this.language = language;
 	}
 
-	public String getCountry() {
+	public List<String> getCountry() {
 		return country;
 	}
 
-	public void setCountry(String country) {
+	public void setCountry(List<String> country) {
 		this.country = country;
 	}
 
