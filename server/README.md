@@ -39,7 +39,7 @@ A list of some of the notable features implemented, along with links to their lo
 | Feature | Link(s) |
 | ------------- | ------------- |
 | Customised sorting/filtering of video releases on any field using input parameters. For example, **http://localhost:8080/netfilms-api/videoreleases?language=English&country=USA&rated=PG-13&sort=metascore&sortOrder=desc** is valid | [[1]](https://github.com/ynandak/netfilms/blob/module-api/server/src/main/java/xyz/yogesh/app/entity/VideoRelease.java#L80) |
-| Normalisation of VideoRelease JSON input for certain multi-valued fields | [[1]](https://github.com/ynandak/netfilms/blob/module-api/server/src/main/java/xyz/yogesh/app/entity/raw/RawVideoRelease.java#L61) |
+| Normalization of VideoRelease JSON input for certain multi-valued fields | [[1]](https://github.com/ynandak/netfilms/blob/module-api/server/src/main/java/xyz/yogesh/app/entity/raw/RawVideoRelease.java#L61) |
 | Password hashing using jbCrypt before storage | [[1]](https://github.com/ynandak/netfilms/blob/module-api/server/src/main/java/xyz/yogesh/app/service/UserServiceImp.java#L56) [[2]](https://github.com/ynandak/netfilms/blob/module-api/server/src/main/java/xyz/yogesh/app/service/HashService.java#L5) |
 | Implementation of case-insensitive JSON mapping by overriding Spring's default mapping | [[1]](https://github.com/ynandak/netfilms/blob/module-api/server/src/main/java/xyz/yogesh/app/AppConfig.java#L26) |
 | On Delete Cascade for Reviews when a User or VideoRelease is deleted | [[1]](https://github.com/ynandak/netfilms/blob/module-api/server/src/main/java/xyz/yogesh/app/repository/ReviewRepository.java#L42) |
@@ -48,3 +48,8 @@ A list of some of the notable features implemented, along with links to their lo
 | @JsonIgnore and @JsonProperty(access) to limit what is sent back to client | [[1]](https://github.com/ynandak/netfilms/blob/module-api/server/src/main/java/xyz/yogesh/app/entity/User.java#L46) |
 | Use of @Enumerated to limit the types of users to USER, ADMIN  | [[1]](https://github.com/ynandak/netfilms/blob/module-api/server/src/main/java/xyz/yogesh/app/entity/User.java#L55) |
 | Database connection details using properties file | [[1]](https://github.com/ynandak/netfilms/blob/module-api/server/src/main/java/resources/netfilms-api.properties) [[2]](https://github.com/ynandak/netfilms/blob/module-api/server/src/main/java/xyz/yogesh/app/JPAConfig.java#L23) |
+
+### 4. To-Do
+
+* Implementing RESTful session control.
+* Eliminating RawVideoRelease and implementing efficient direct mapping to VideoRelease.
